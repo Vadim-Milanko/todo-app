@@ -1,0 +1,171 @@
+.taskCard {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.taskCard:hover {
+  border-color: #cbd5e0;
+}
+
+.taskCard.completed {
+  background: #f7fafc;
+  border-color: #9ae6b4;
+}
+
+.taskCard.completed .text {
+  text-decoration: line-through;
+  color: #718096;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.checkbox {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.checkboxCustom {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #cbd5e0;
+  border-radius: 4px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.checkbox:checked + .checkboxCustom {
+  background: #48bb78;
+  border-color: #48bb78;
+}
+
+.checkmark {
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.deleteButton {
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  color: #a0aec0;
+  cursor: pointer;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  line-height: 1;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.deleteButton:hover {
+  background: #a0aec0;
+  color: white;
+}
+
+.text {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #2d3748;
+  word-wrap: break-word;
+  margin: 0;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  color: #718096;
+}
+
+.date {
+  font-size: 0.75rem;
+}
+
+.priority {
+  padding: 0.125rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.priority.low {
+  background: #c6f6d5;
+  color: #22543d;
+}
+
+.priority.medium {
+  background: #feebc8;
+  color: #c05621;
+}
+
+.priority.high {
+  background: #fed7d7;
+  color: #c53030;
+}
+
+@media (max-width: 768px) {
+  .taskCard {
+    padding: 0.75rem;
+  }
+
+  .text {
+    font-size: 0.8125rem;
+  }
+
+  .footer {
+    font-size: 0.6875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    gap: 0.5rem;
+  }
+
+  .checkboxCustom {
+    width: 18px;
+    height: 18px;
+  }
+
+  .deleteButton {
+    width: 20px;
+    height: 20px;
+    font-size: 16px;
+  }
+}
+
