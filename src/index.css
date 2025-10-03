@@ -106,3 +106,12 @@ p {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--text-muted);
 }
+
+/* Drag and Drop Global Styles */
+body.dragging {
+  user-select: none;
+}
+
+body.dragging * {
+  cursor: grabbing !important;
+}

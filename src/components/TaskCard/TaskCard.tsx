@@ -2,11 +2,13 @@ import { useState } from 'react'
 
 import type { Task } from '../../types'
 import { formatDate } from '../../utils/date'
+import { useDraggable } from '../../hooks/useDragAndDrop'
 
 import styles from './TaskCard.module.css'
 
 interface TaskCardProps {
   task: Task
+  columnId: string
   searchQuery: string
   onRemove: () => void
   onToggleComplete: () => void
@@ -20,6 +22,7 @@ interface TaskCardProps {
  */
 export function TaskCard({
   task,
+  columnId,
   searchQuery,
   onRemove,
   onToggleComplete,
@@ -28,6 +31,18 @@ export function TaskCard({
 }: TaskCardProps) {
   const [isEditing, setIsEditing] = useState(false)
   const [editText, setEditText] = useState(task.text)
+  const [isDragging, setIsDragging] = useState(false)
+
+  // Make the task card draggable
+  const dragRef = useDraggable(
+    {
+      type: 'task',
+      taskId: task.id,
+      columnId
+    },
+    () => setIsDragging(true),
+    () => setIsDragging(false)
+  )
 
   /**
    * Highlights search terms in the task text
@@ -73,7 +88,11 @@ export function TaskCard({
   }
 
   return (
-    <div className={`${styles.taskCard} ${task.completed ? styles.completed : ''} ${task.selected ? styles.selected : ''}`}>
+    <div
+      ref={dragRef}
+      className={`${styles.taskCard} ${task.completed ? styles.completed : ''} ${task.selected ? styles.selected : ''} ${isDragging ? styles.dragging : ''}`}
+      style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
+    >
       <div className={styles.content}>
         <div className={styles.header}>
           <label className={styles.selectionLabel} title="Select for bulk operations">

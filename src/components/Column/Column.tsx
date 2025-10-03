@@ -3,6 +3,8 @@ import { useState, useMemo } from 'react'
 import type { Column as ColumnType, TaskOperations } from '../../types'
 import { TaskCard } from '../TaskCard/TaskCard'
 import { AddTaskForm } from '../AddTaskForm/AddTaskForm'
+import { useDropTarget } from '../../hooks/useDragAndDrop'
+import type { DragData } from '../../hooks/useDragAndDrop'
 
 import styles from './Column.module.css'
 
@@ -12,6 +14,7 @@ interface ColumnProps extends TaskOperations {
   allColumns: ColumnType[]
   onRemoveColumn: (columnId: string) => void
   onEditColumn: (columnId: string, newTitle: string) => void
+  onMoveTask: (taskId: string, fromColumnId: string, toColumnId: string) => void
 }
 
 /**
@@ -32,11 +35,26 @@ export function Column({
   onBulkToggleComplete,
   onBulkMoveTasks,
   onRemoveColumn,
-  onEditColumn
+  onEditColumn,
+  onMoveTask
 }: ColumnProps) {
   const [isAddingTask, setIsAddingTask] = useState(false)
   const [isEditingTitle, setIsEditingTitle] = useState(false)
   const [editTitle, setEditTitle] = useState(column.title)
+
+  // Make column a drop target for tasks
+  const dropRef = useDropTarget(
+    {
+      type: 'column',
+      columnId: column.id
+    },
+    (dragData: DragData) => {
+      // Only move if task is from different column
+      if (dragData.columnId !== column.id) {
+        onMoveTask(dragData.taskId, dragData.columnId, column.id)
+      }
+    }
+  )
 
   // Calculate task statistics
   const { completedCount, totalCount, selectedTasks, selectedCount } = useMemo(() => {
@@ -235,11 +253,12 @@ export function Column({
       )}
 
       <div className={styles.content}>
-        <div className={styles.tasks}>
+        <div ref={dropRef} className={styles.tasks}>
           {column.tasks.map(task => (
             <TaskCard
               key={task.id}
               task={task}
+              columnId={column.id}
               searchQuery={searchQuery}
               onRemove={() => onRemoveTask(column.id, task.id)}
               onToggleComplete={() => onToggleTaskComplete(column.id, task.id)}
