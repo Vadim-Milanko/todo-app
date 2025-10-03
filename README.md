@@ -1,73 +1,130 @@
-# React + TypeScript + Vite
+# Task Board - React Todo Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive todo list application built with React, TypeScript, and Vite. Features a kanban-style board with drag-and-drop functionality, task management, and advanced filtering capabilities.
 
-Currently, two official plugins are available:
+## 🛠 Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React 19** - Latest React with modern features
+- **TypeScript** - Type-safe development
+- **Vite** - Fast build tool and dev server
+- **CSS Modules** - Scoped styling
+- **@atlaskit/pragmatic-drag-and-drop** - Drag and drop functionality (ready for integration)
 
-## React Compiler
+## 📦 Installation & Setup
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Prerequisites
+- Node.js (v18 or higher)
+- npm
 
-## Expanding the ESLint configuration
+### Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. **Clone the repository**
+   ```bash
+   git clone <https://github.com/Vadim-Milanko/todo-app>
+   cd todo-app
+   ```
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+3. **Start development server**
+   ```bash
+   npm run dev
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+4. **Open in browser**
+   - Navigate to `http://localhost:5173`
+   - The application will hot-reload as you make changes
+
+### Available Scripts
+
+```bash
+# Development
+npm run dev          # Start development server
+
+# Building
+npm run build        # Build for production
+npm run preview      # Preview production build
+
+# Code Quality
+npm run lint         # Run ESLint
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🎯 Usage Guide
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Basic Operations
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. **Adding Tasks**
+   - Click "+ Add Task" in any column
+   - Type your task and press Enter or click "Add Task"
+
+2. **Managing Tasks**
+   - **Complete**: Check the completion checkbox
+   - **Edit**: Double-click task text to edit inline
+   - **Delete**: Click the × button
+   - **Select**: Use the square checkbox for multi-select
+
+3. **Column Management**
+   - **Add Column**: Click "+ Add Column" button
+   - **Edit Title**: Click column title to rename
+   - **Delete Column**: Click × in column header (confirms before deletion)
+
+4. **Bulk Operations**
+   - Select multiple tasks using checkboxes
+   - Use "Select All" to select all tasks in a column
+   - Bulk actions appear when tasks are selected:
+     - Mark as Complete/Incomplete
+     - Delete selected tasks
+     - Move to another column
+
+5. **Search & Filter**
+   - Use search bar to find tasks by name
+   - Filter by All, Active, or Completed tasks
+   - Search terms are highlighted in results
+
+### Keyboard Shortcuts
+
+- **Enter**: Confirm task/column creation or editing
+- **Escape**: Cancel task/column editing
+- **Double-click**: Edit task text
+
+## 🏗 Architecture
+
+### Project Structure
 ```
+src/
+├── components/          # Reusable UI components
+│   ├── AddColumnForm/   # Column creation form
+│   ├── AddTaskForm/     # Task creation form
+│   ├── Board/           # Main board container
+│   ├── Column/          # Column with tasks
+│   ├── SearchAndFilter/ # Search and filter controls
+│   └── TaskCard/        # Individual task component
+├── pages/               # Page components
+│   └── BoardPage/       # Main application page
+├── services/            # Business logic
+│   └── StorageService/  # localStorage operations
+├── types/               # TypeScript definitions
+├── utils/               # Utility functions
+└── constants/           # Application constants
+```
+
+### Key Design Patterns
+
+- **Component Composition** - Small, focused components
+- **Props Drilling** - Simple state management for this scope
+- **CSS Modules** - Scoped styling to prevent conflicts
+- **TypeScript Interfaces** - Strong typing for better DX
+- **Responsive Design** - Mobile-first approach
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+**Built with ❤️ using React, TypeScript, and modern web technologies**

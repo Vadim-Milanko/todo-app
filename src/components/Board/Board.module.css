@@ -36,11 +36,57 @@
   }
 }
 
+.addColumnButton {
+  min-width: 280px;
+  max-width: 320px;
+  height: fit-content;
+  padding: 2rem 1.5rem;
+  border: 2px dashed #ede4d3;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.8);
+  color: #8b7355;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.addColumnButton:hover {
+  border-color: #d4b896;
+  background: rgba(212, 184, 150, 0.05);
+  color: #d4b896;
+}
+
+.addIcon {
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+@media (max-width: 768px) {
+  .addColumnButton {
+    min-width: 250px;
+    max-width: 280px;
+    padding: 1.5rem 1rem;
+  }
+}
+
 @media (max-width: 480px) {
   .columnsContainer {
     gap: 0.75rem;
     flex-direction: column;
     overflow-x: visible;
+  }
+  
+  .addColumnButton {
+    min-width: 100%;
+    max-width: 100%;
+    padding: 1rem;
+    flex-direction: row;
+    justify-content: center;
   }
 }
 

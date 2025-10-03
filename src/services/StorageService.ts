@@ -1,10 +1,18 @@
 import type { Column } from '../types'
 
+/**
+ * Service class for handling localStorage operations
+ * Provides methods to save and retrieve task board data
+ */
 export class StorageService {
   private static readonly STORAGE_KEY = 'taskboard_data'
   private static readonly VERSION_KEY = 'taskboard_version'
   private static readonly CURRENT_VERSION = '1.0.0'
 
+  /**
+   * Save columns to localStorage
+   * @param columns Array of columns to save
+   */
   static saveColumns(columns: Column[]): void {
     try {
       const data = {
@@ -19,6 +27,10 @@ export class StorageService {
     }
   }
 
+  /**
+   * Get columns from localStorage
+   * @returns Array of columns or empty array if none found
+   */
   static getColumns(): Column[] {
     try {
       const storedData = localStorage.getItem(this.STORAGE_KEY)
@@ -42,6 +54,9 @@ export class StorageService {
     }
   }
 
+  /**
+   * Clear all stored data
+   */
   static clearStorage(): void {
     try {
       localStorage.removeItem(this.STORAGE_KEY)
@@ -49,32 +64,5 @@ export class StorageService {
     } catch (error) {
       console.error('Failed to clear localStorage:', error)
     }
-  }
-
-  static isStorageAvailable(): boolean {
-    try {
-      const test = '__storage_test__'
-      localStorage.setItem(test, test)
-      localStorage.removeItem(test)
-      return true
-    } catch {
-      return false
-    }
-  }
-
-  static getStorageInfo(): { used: number; available: boolean } {
-    const available = this.isStorageAvailable()
-    let used = 0
-
-    if (available) {
-      try {
-        const data = localStorage.getItem(this.STORAGE_KEY)
-        used = data ? new Blob([data]).size : 0
-      } catch (error) {
-        console.error('Failed to calculate storage usage:', error)
-      }
-    }
-
-    return { used, available }
   }
 }
