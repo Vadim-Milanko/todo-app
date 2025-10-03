@@ -14,6 +14,12 @@
   padding: 1.5rem 1.5rem 1rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.titleSection {
+  display: flex;
   justify-content: space-between;
   align-items: center;
 }
@@ -22,18 +28,115 @@
   margin: 0;
   font-size: 1.25rem;
   font-weight: 600;
-  color: #2d3748;
+  color: #5d4e37;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+  flex: 1;
+}
+
+.title:hover {
+  background-color: #fefcf8;
+}
+
+.titleInput {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #5d4e37;
+  border: 2px solid #d4b896;
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  background: white;
+  outline: none;
+  flex: 1;
+}
+
+.deleteColumnButton {
+  background: transparent;
+  border: none;
+  color: #a69680;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+.deleteColumnButton:hover {
+  background: #f5ede4;
+  color: #d4a574;
 }
 
 .stats {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 0.5rem;
 }
 
+.selectAllLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-size: 0.75rem;
+  color: #8b7355;
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.selectAllLabel:hover {
+  background-color: #fefcf8;
+}
+
+.selectAllCheckbox {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.selectAllCustom {
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid #ede4d3;
+  border-radius: 3px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.selectAllCheckbox:checked + .selectAllCustom {
+  background: #d4b896;
+  border-color: #d4b896;
+}
+
+.selectAllCheckbox:indeterminate + .selectAllCustom {
+  background: #ede4d3;
+  border-color: #d4b896;
+}
+
+.selectAllMark {
+  color: white;
+  font-size: 9px;
+  font-weight: bold;
+}
+
+.selectAllText {
+  white-space: nowrap;
+  user-select: none;
+}
+
 .count {
-  background: #e2e8f0;
-  color: #4a5568;
+  background: #f5f0e8;
+  color: #8b7355;
   padding: 0.25rem 0.5rem;
   border-radius: 12px;
   font-size: 0.75rem;
@@ -62,23 +165,23 @@
 }
 
 .tasks::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: #f8f4ed;
   border-radius: 3px;
 }
 
 .tasks::-webkit-scrollbar-thumb {
-  background: #cbd5e0;
+  background: #ede4d3;
   border-radius: 3px;
 }
 
 .tasks::-webkit-scrollbar-thumb:hover {
-  background: #a0aec0;
+  background: #a69680;
 }
 
 .addButton {
   width: 100%;
   padding: 0.75rem;
-  background: #4299e1;
+  background: #d4b896;
   color: white;
   border: none;
   border-radius: 8px;
@@ -93,8 +196,8 @@
 }
 
 .addButton:hover {
-  background: #3182ce;
-  box-shadow: 0 4px 12px rgba(66, 153, 225, 0.3);
+  background: #c4a373;
+  box-shadow: 0 4px 12px rgba(212, 184, 150, 0.3);
 }
 
 .addButton:active {
@@ -120,6 +223,97 @@
   }
 }
 
+/* Bulk Actions */
+.bulkActions {
+  background: #f8f4ed;
+  border: 1px solid #f5f0e8;
+  border-radius: 8px;
+  padding: 0.75rem;
+  margin: 0 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.bulkInfo {
+  font-size: 0.75rem;
+  color: #8b7355;
+  font-weight: 500;
+}
+
+.bulkButtons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.bulkButton {
+  padding: 0.375rem 0.75rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #d4b896;
+  color: white;
+}
+
+.bulkButton:hover {
+  background: #c4a373;
+}
+
+.moveDropdown {
+  position: relative;
+}
+
+.moveSelect {
+  padding: 0.375rem 0.75rem;
+  border: 1px solid #f5f0e8;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  background: white;
+  cursor: pointer;
+  min-width: 100px;
+}
+
+.moveSelect:focus {
+  outline: none;
+  border-color: #d4b896;
+}
+
+@media (max-width: 768px) {
+  .column {
+    min-width: 280px;
+    max-width: 320px;
+  }
+
+  .header {
+    padding: 1rem 1rem 0.75rem;
+  }
+
+  .title {
+    font-size: 1.125rem;
+  }
+
+  .content {
+    padding: 0.75rem 1rem 1rem;
+  }
+  
+  .bulkActions {
+    margin: 0 1rem 1rem;
+  }
+  
+  .bulkButtons {
+    flex-direction: column;
+  }
+  
+  .bulkButton,
+  .moveSelect {
+    width: 100%;
+  }
+}
+
 @media (max-width: 480px) {
   .column {
     min-width: 100%;
@@ -129,6 +323,12 @@
 
   .tasks {
     max-height: 300px;
+  }
+  
+  .stats {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
   }
 }
 

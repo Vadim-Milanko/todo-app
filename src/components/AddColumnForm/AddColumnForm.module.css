@@ -1,38 +1,41 @@
-.form {
+.addColumnForm {
   background: white;
-  border: 1px solid #ede4d3;
-  border-radius: 8px;
-  padding: 1rem;
+  border: 1px solid #cbd5e0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  min-width: 280px;
+  max-width: 320px;
   transition: all 0.2s ease;
 }
 
-.form:focus-within {
-  border-color: #d4b896;
-  background: #fefcf8;
+.addColumnForm:hover {
+  border-color: #a0aec0;
 }
 
-.textarea {
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.input {
   width: 100%;
-  min-height: 80px;
   padding: 0.75rem;
-  border: 1px solid #f5f0e8;
-  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
   font-size: 0.875rem;
-  line-height: 1.5;
-  resize: vertical;
-  font-family: inherit;
-  transition: border-color 0.2s ease;
-  box-sizing: border-box;
+  transition: all 0.2s ease;
+  background: white;
 }
 
-.textarea:focus {
+.input:focus {
   outline: none;
   border-color: #d4b896;
   box-shadow: 0 0 0 3px rgba(212, 184, 150, 0.1);
 }
 
-.textarea::placeholder {
-  color: #a69680;
+.input::placeholder {
+  color: #a0aec0;
 }
 
 .actions {
@@ -85,36 +88,18 @@
   color: #8b7355;
 }
 
-.hint {
-  margin-top: 0.5rem;
-  font-size: 0.75rem;
-  color: #a69680;
-  text-align: center;
-}
-
 @media (max-width: 768px) {
-  .form {
-    padding: 0.75rem;
+  .addColumnForm {
+    min-width: 250px;
+    max-width: 280px;
+    padding: 1rem;
   }
 
-  .textarea {
-    min-height: 70px;
+  .input {
     padding: 0.625rem;
     font-size: 0.8125rem;
   }
 
-  .actions {
-    margin-top: 0.625rem;
-  }
-
-  .submitButton,
-  .cancelButton {
-    padding: 0.625rem 0.875rem;
-    font-size: 0.8125rem;
-  }
-}
-
-@media (max-width: 480px) {
   .actions {
     flex-direction: column;
   }
@@ -124,4 +109,3 @@
     width: 100%;
   }
 }
-

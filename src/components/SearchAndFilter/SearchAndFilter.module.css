@@ -1,0 +1,140 @@
+.searchAndFilter {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.searchSection {
+  margin-bottom: 1rem;
+}
+
+.searchInputWrapper {
+  position: relative;
+  max-width: 400px;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  padding-right: 2.5rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+  background: white;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: #d4b896;
+  box-shadow: 0 0 0 3px rgba(212, 184, 150, 0.1);
+}
+
+.searchInput::placeholder {
+  color: #a0aec0;
+}
+
+.searchIcon {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #a0aec0;
+  pointer-events: none;
+}
+
+.filterSection {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.filterButtons {
+  display: flex;
+  gap: 0.5rem;
+  background: #f7fafc;
+  padding: 0.25rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.filterButton {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: transparent;
+  color: #4a5568;
+  white-space: nowrap;
+}
+
+.filterButton:hover {
+  background: rgba(212, 184, 150, 0.1);
+  color: #5d4e37;
+}
+
+.filterButton.active {
+  background: #d4b896;
+  color: white;
+  box-shadow: 0 2px 4px rgba(212, 184, 150, 0.2);
+}
+
+.searchInfo {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: #edf2f7;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  color: #4a5568;
+}
+
+.searchTerm {
+  font-weight: 600;
+  color: #2d3748;
+}
+
+@media (max-width: 768px) {
+  .searchAndFilter {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .searchInputWrapper {
+    max-width: 100%;
+  }
+  
+  .filterSection {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+  
+  .filterButtons {
+    justify-content: center;
+  }
+  
+  .filterButton {
+    flex: 1;
+    min-width: 0;
+    font-size: 0.8125rem;
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .filterButtons {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .filterButton {
+    text-align: center;
+  }
+}
