@@ -36,6 +36,7 @@ export function SearchAndFilter({
             placeholder="Search tasks..."
             className={styles.searchInput}
           />
+
           <div className={styles.searchIcon}>
             🔍
           </div>

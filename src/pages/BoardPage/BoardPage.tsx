@@ -3,6 +3,7 @@ import { useState, useEffect, useMemo } from 'react'
 import { Board } from '../../components/Board/Board'
 import { SearchAndFilter } from '../../components/SearchAndFilter/SearchAndFilter'
 import { StorageService } from '../../services/StorageService'
+import { useDragMonitor } from '../../hooks/useDragAndDrop'
 import type { Column as ColumnType, Task, TaskFilter, SearchAndFilter as SearchAndFilterType } from '../../types'
 
 import styles from './BoardPage.module.css'
@@ -23,6 +24,9 @@ export function BoardPage() {
     searchQuery: '',
     filter: 'all'
   })
+
+  // Monitor drag operations globally
+  useDragMonitor()
 
   // Load data from localStorage on mount
   useEffect(() => {

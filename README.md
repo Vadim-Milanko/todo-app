@@ -2,13 +2,45 @@
 
 A modern, responsive todo list application built with React, TypeScript, and Vite. Features a kanban-style board with drag-and-drop functionality, task management, and advanced filtering capabilities.
 
+## 🚀 Live Demo
+
+**[View Live Application](https://todo-app-lac-phi.vercel.app/)**
+
+Experience the full functionality of the Task Board application deployed on Vercel.
+
+## ✨ Features
+
+### Core Functionality
+- ✅ **Add/Remove Tasks** - Create and delete tasks with ease
+- ✅ **Mark Complete/Incomplete** - Toggle task completion status
+- ✅ **Task Filtering** - Filter by all, completed, or incomplete tasks
+- ✅ **Search Tasks** - Search tasks by name with highlighting
+- ✅ **Persistent Storage** - Data saved to localStorage
+
+### Column Management
+- ✅ **Add/Delete Columns** - Create custom columns and remove them
+- ✅ **Edit Column Titles** - Click column titles to rename them
+- ✅ **Drag & Drop Tasks** - Move tasks between columns with drag and drop
+
+### Task Operations
+- ✅ **Inline Task Editing** - Double-click tasks to edit text
+- ✅ **Multi-Select Tasks** - Select multiple tasks for bulk operations
+- ✅ **Select All** - Select/deselect all tasks in a column
+- ✅ **Bulk Operations** - Delete, complete, or move multiple tasks at once
+
+### UI/UX
+- ✅ **Responsive Design** - Works on desktop, tablet, and mobile
+- ✅ **Modern Interface** - Clean, beige color scheme with intuitive design
+- ✅ **Search Highlighting** - Highlights matching text in search results
+- ✅ **Visual Feedback** - Hover states, animations, and drag indicators
+
 ## 🛠 Tech Stack
 
 - **React 19** - Latest React with modern features
 - **TypeScript** - Type-safe development
 - **Vite** - Fast build tool and dev server
 - **CSS Modules** - Scoped styling
-- **@atlaskit/pragmatic-drag-and-drop** - Drag and drop functionality (ready for integration)
+- **@atlaskit/pragmatic-drag-and-drop** - Drag and drop functionality
 
 ## 📦 Installation & Setup
 
@@ -61,10 +93,11 @@ npm run lint         # Run ESLint
    - Type your task and press Enter or click "Add Task"
 
 2. **Managing Tasks**
-   - **Complete**: Check the completion checkbox
+   - **Complete**: Use the "Complete" toggle in each task
    - **Edit**: Double-click task text to edit inline
    - **Delete**: Click the × button
-   - **Select**: Use the square checkbox for multi-select
+   - **Select**: Use the "Select" checkbox for multi-select
+   - **Move**: Drag and drop tasks between columns
 
 3. **Column Management**
    - **Add Column**: Click "+ Add Column" button
@@ -89,6 +122,7 @@ npm run lint         # Run ESLint
 - **Enter**: Confirm task/column creation or editing
 - **Escape**: Cancel task/column editing
 - **Double-click**: Edit task text
+- **Drag & Drop**: Click and drag tasks to move between columns
 
 ## 🏗 Architecture
 
@@ -99,25 +133,30 @@ src/
 │   ├── AddColumnForm/   # Column creation form
 │   ├── AddTaskForm/     # Task creation form
 │   ├── Board/           # Main board container
-│   ├── Column/          # Column with tasks
+│   ├── Column/          # Column with tasks and drop zones
 │   ├── SearchAndFilter/ # Search and filter controls
-│   └── TaskCard/        # Individual task component
+│   └── TaskCard/        # Individual draggable task component
+├── hooks/               # Custom React hooks
+│   └── useDragAndDrop.ts # Drag and drop functionality hooks
 ├── pages/               # Page components
 │   └── BoardPage/       # Main application page
 ├── services/            # Business logic
-│   └── StorageService/  # localStorage operations
+│   └── StorageService.ts # localStorage operations with documentation
 ├── types/               # TypeScript definitions
-├── utils/               # Utility functions
-└── constants/           # Application constants
+│   └── index.ts         # Application type definitions
+└── utils/               # Utility functions
+    └── date.ts          # Date formatting utilities
 ```
 
 ### Key Design Patterns
 
-- **Component Composition** - Small, focused components
-- **Props Drilling** - Simple state management for this scope
+- **Component Composition** - Small, focused components with single responsibilities
+- **Custom Hooks** - Reusable logic for drag & drop functionality
+- **Props Drilling** - Simple state management appropriate for application scope
 - **CSS Modules** - Scoped styling to prevent conflicts
-- **TypeScript Interfaces** - Strong typing for better DX
-- **Responsive Design** - Mobile-first approach
+- **TypeScript Interfaces** - Strong typing for better developer experience
+- **Responsive Design** - Mobile-first approach with adaptive layouts
+- **Drag & Drop Integration** - Pragmatic drag-and-drop for intuitive interactions
 
 ## 🤝 Contributing
 

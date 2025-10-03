@@ -1,5 +1,5 @@
 /**
- * Represents a single task in the todo application
+ * Represents a single task in the application
  */
 export interface Task {
   id: string
@@ -8,7 +8,7 @@ export interface Task {
   createdAt: string
   dueDate?: string
   priority?: 'low' | 'medium' | 'high'
-  selected?: boolean // For multi-select functionality
+  selected?: boolean
 }
 
 /**
@@ -19,7 +19,7 @@ export interface Column {
   title: string
   tasks: Task[]
   color?: string
-  order?: number // For column reordering
+  order?: number
 }
 
 /**
